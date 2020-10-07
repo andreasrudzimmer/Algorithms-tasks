@@ -70,6 +70,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     }
 
+
+
     public Liste<T> subliste(int fra, int til){
         throw new UnsupportedOperationException();
     }
@@ -140,7 +142,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        StringBuilder sb = new StringBuilder();
+        Node current = hode;
+        while (current != null){
+            sb.append(current.verdi + " ");
+            current = current.neste;
+        }
+        return sb.toString();
     }
 
     public String omvendtString() {
