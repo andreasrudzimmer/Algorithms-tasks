@@ -6,6 +6,7 @@ package com.andreasrudzimmer;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -61,13 +62,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                         hale.neste = null;
                     }
                     antall++;
-
                 }
-
             }
-
         }
-
     }
 
 
@@ -97,7 +94,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi, "Verdien skal ikke være null");
+
+            Node ny_node = new Node(verdi);
+            Node siste = hode;
+            antall++;
+
+            ny_node.neste = null;
+            if (hode == null){
+                ny_node.forrige = null;
+                return true;
+        } while (siste.neste != null){
+                siste = siste.neste;
+                siste.neste = ny_node;
+                ny_node.forrige = siste;
+        }
+            return false;
     }
 
     @Override
