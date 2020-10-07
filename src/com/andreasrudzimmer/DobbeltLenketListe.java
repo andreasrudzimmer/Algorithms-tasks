@@ -36,11 +36,38 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+
+        if (a == null){
+            throw new NullPointerException();
+        } else {
+            for (int i = 0; i < a.length; i++) {
+                if (a[i] != null){
+                    Node nyNode = new Node(a[i]);
+
+
+                    if(hode == null) {
+                        hode = hale = nyNode;
+                        hode.forrige = null;
+                        hale.neste = null;
+                    }
+                    else {
+                        hale.neste = nyNode;
+                        nyNode.forrige = hale;
+                        hale = nyNode;
+                        hale.neste = null;
+                    }
+                    antall++;
+
+                }
+
+            }
+
+        }
+
     }
 
     public Liste<T> subliste(int fra, int til){
