@@ -68,6 +68,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
 
+    private Node<T> finnNode(int indeks) {
+        Node<T> node;
+
+        if (indeks < antall() / 2) {
+            node = hode;
+
+            for (int i = 0; i <= indeks; i++) {
+
+                node = node.neste;
+            }
+        } else {
+            node = hale;
+
+            for (int i = antall()-1; i >= indeks; i--) {
+                node = node.forrige;
+            }
+        }
+
+        return node;
+    }
+
 
     public Liste<T> subliste(int fra, int til){
         throw new UnsupportedOperationException();
@@ -97,25 +118,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean leggInn(T verdi) {
 
         Objects.requireNonNull(verdi);
+        Node nyNode = new Node(verdi);
+        endringer++;
 
-            Node<T> node = new Node<T>(verdi);
-            if (antall == 0){
-                hode = new Node<T>(node.verdi);
-                hale = new Node<T>(node.verdi);
-                node.forrige = hode;
-                node.neste = hale;
+        try {
+            if(hode==null) {
+                hode = hale = nyNode;
+                hode.forrige = null;
+                hale.neste = null;
             } else {
-                node.forrige = hale.forrige;
-                hale.forrige.neste = node;
+                hale.neste = nyNode;
+                nyNode.forrige = hale;
+                hale = nyNode;
+                hale.neste = null;
             }
-
-            node.neste = hale;
-            hale.forrige = node;
-
             antall++;
-            endringer++;
-
-            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
 
@@ -131,7 +152,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        return finnNode(indeks).verdi;
     }
 
     @Override
