@@ -171,6 +171,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 Node<T> holder = finnNode(indeks-1);
                 set.neste = holder.neste;
                 holder.neste = set;
+                set.forrige = holder;
                 set.neste.forrige = set;
                 hode.forrige = null;
                 hale.neste = null;
