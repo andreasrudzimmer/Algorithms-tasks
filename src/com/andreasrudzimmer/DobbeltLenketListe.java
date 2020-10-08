@@ -90,7 +90,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     public Liste<T> subliste(int fra, int til){
-        throw new UnsupportedOperationException();
+        DobbeltLenketListe<T> l = new DobbeltLenketListe<T>();
+        try {
+            for(int i=fra;i<til;i++) {
+                l.leggInn(finnNode(i).verdi);
+            }
+        } catch (Exception e) {
+
+        }
+        if(fra>til) {
+            throw new IllegalArgumentException();
+        } else if(til>antall || fra==-1) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            return l;
+        }
     }
 
     @Override
@@ -162,12 +176,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-
+        Objects.requireNonNull(nyverdi);
         indeksKontroll(indeks, false);
         Node<T> node = finnNode(indeks);
         T mid = node.verdi;
         node.verdi = nyverdi;
-        Objects.requireNonNull(nyverdi);
         endringer++;
         return mid;
     }
