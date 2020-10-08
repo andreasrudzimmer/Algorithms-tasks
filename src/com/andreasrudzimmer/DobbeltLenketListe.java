@@ -69,24 +69,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     private Node<T> finnNode(int indeks) {
-        Node<T> node;
-
-        if (indeks < antall() / 2) {
-            node = hode;
-
-            for (int i = 0; i <= indeks; i++) {
-
-                node = node.neste;
+        if(indeks>=0 && indeks<=(antall-1)) {
+            Node<T> node;
+            if (indeks < antall()/2) {
+                node = hode;
+                for (int i = 1; i <= indeks; i++) {
+                    node = node.neste;
+                }
+            } else {
+                node = hale;
+                for (int i = antall()-2; i >= indeks; i--) {
+                    node = node.forrige;
+                }
             }
+            return node;
         } else {
-            node = hale;
-
-            for (int i = antall()-1; i >= indeks; i--) {
-                node = node.forrige;
-            }
+            throw new IndexOutOfBoundsException();
         }
-
-        return node;
     }
 
 
