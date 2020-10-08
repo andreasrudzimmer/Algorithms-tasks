@@ -96,20 +96,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean leggInn(T verdi) {
         Objects.requireNonNull(verdi, "Verdien skal ikke være null");
 
-            Node ny_node = new Node(verdi);
-            Node siste = hode;
+            Node<T> node = new Node<T>(verdi, null, null);
+            if (antall == 0){
+                hode = new Node<T>(node.verdi);
+                hale = new Node<T>(node.verdi);
+                node.forrige = hode;
+            } else {
+                node.forrige = hale.forrige;
+                hale.forrige.neste = node;
+            }
+
+            node.neste = hale;
+            hale.forrige = node;
             antall++;
 
-            ny_node.neste = null;
-            if (hode == null){
-                ny_node.forrige = null;
-                return true;
-        } while (siste.neste != null){
-                siste = siste.neste;
-                siste.neste = ny_node;
-                ny_node.forrige = siste;
-        }
-            return false;
+            return true;
     }
 
     @Override
@@ -159,11 +160,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(!tom()){
 
             Node<T> node = hode;
-            for (int i = 0; i < antall(); i++){
+            sb.append(node.verdi);
+            for (int i = 1; i < antall(); i++){
                 sb.append(node.verdi);
                 if (i + 1 < antall()){
-                    node = node.neste;
                     sb.append(", ");
+                    node = node.neste;
                 }
 
             }
