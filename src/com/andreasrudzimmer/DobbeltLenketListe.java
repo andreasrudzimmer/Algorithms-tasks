@@ -239,7 +239,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public boolean fjern(T verdi) {
+    public boolean fjern(T verdi) { //Får ikke denne til å fungere opptimalt, og rekker ikke det før innleveringen.
         Objects.requireNonNull(verdi);
         Node<T> node = hode;
 
@@ -253,7 +253,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 endringer++;
                 antall--;
 
-                return true ;
+                return true;
             }
         }
         return false;
@@ -262,7 +262,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     @Override
-    public T fjern(int indeks){
+    public T fjern(int indeks){ //Får ikke denne til å fungere opptimalt, og rekker ikke det før innleveringen.
 
             indeksKontroll(indeks, false);
 
