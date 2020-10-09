@@ -239,32 +239,56 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public boolean fjern(T verdi) {  throw new UnsupportedOperationException(); }
+    public boolean fjern(T verdi) {
+        Objects.requireNonNull(verdi);
+        Node<T> node = hode;
 
-    
-    @Override
-    public T fjern(int indeks) {
-        Node<T> node;
-        if(indeks < antall()/2){
-            node = hode;
-            for(int i = 0; i <= indeks; i++){
-                node = node.neste;
-            }
+        for (int i = 0; i < antall(); i++) {
+            node = node.neste;
 
-        }else{
-            node = hale;
-            for(int i = antall()- 1; i >= indeks; i--){
-                node = node.forrige;
+            if (node.verdi.equals(verdi)) {
+                node.forrige.neste = node.neste;
+                node.neste.forrige = node.forrige;
+
+                endringer++;
+                antall--;
+
+                return true;
             }
         }
+        return false;
+    }
 
-        Node<T> mid = node;
+
+
+    @Override
+    public T fjern(int indeks){
+
+            indeksKontroll(indeks, false);
+
+            Node<T> node;
+            if (indeks < antall() / 2) {
+                node = hode;
+                for (int i = 0; i <= indeks; i++) {
+                    node = node.neste;
+                }
+
+            } else {
+                node = hale;
+                for (int i = antall() - 1; i >= indeks; i--) {
+                    node = node.forrige;
+                }
+            }
+
+
+        Node<T> holder = node; // Holder på den slettede verdien.
 
         node.forrige.neste = node.neste;
         node.neste.forrige = node.forrige;
         endringer++;
         antall--;
-        return mid.verdi;
+
+        return holder.verdi; // Returnerer den slettede verdien.
     }
 
     @Override
