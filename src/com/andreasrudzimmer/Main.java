@@ -37,6 +37,7 @@ public class Main {
         System.out.println(liste.subliste(8, liste.antall()));
         System.out.println(liste.subliste(0,11));
 
+        //Testprogram
     }
 
 
