@@ -239,61 +239,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public boolean fjern(T verdi) { //Får ikke denne til å fungere opptimalt, og rekker ikke det før innleveringen.
-        Objects.requireNonNull(verdi);
-        Node<T> node = hode;
-
-        for (int i = 0; i < antall(); i++) {
-            node = node.neste;
-
-            if (node.verdi.equals(verdi)) {
-                node.forrige.neste = node.neste;
-                node.neste.forrige = node.forrige;
-
-                endringer++;
-                antall--;
-
-                return true;
-            }
-        }
-        return false;
-    }
+    public boolean fjern(T verdi) { throw new UnsupportedOperationException(); } //Skal gjøre denne oppgaven på nytt
 
 
 
     @Override
-    public T fjern(int indeks){ //Får ikke denne til å fungere opptimalt, og rekker ikke det før innleveringen.
+    public T fjern(int indeks){ //Skal gjøre denne oppgaven på nytt
 
-            indeksKontroll(indeks, false);
-
-            Node<T> node;
-            if (indeks < antall() / 2) {
-                node = hode;
-                for (int i = 0; i <= indeks; i++) {
-                    node = node.neste;
-                }
-
-            } else {
-                node = hale;
-                for (int i = antall() - 1; i >= indeks; i--) {
-                    node = node.forrige;
-                }
-            }
-
-
-        Node<T> holder = node; // Holder på den slettede verdien.
-
-        node.forrige.neste = node.neste;
-        node.neste.forrige = node.forrige;
-        endringer++;
-        antall--;
-
-        return holder.verdi; // Returnerer den slettede verdien.
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
+        this.hode = null;
+        this.hale = null;
+        antall = 0;
+        endringer++;
     }
 
     @Override
