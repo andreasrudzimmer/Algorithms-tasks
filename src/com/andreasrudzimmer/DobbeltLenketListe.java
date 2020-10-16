@@ -272,7 +272,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     @Override
-    public T fjern(int indeks){ indeksKontroll(indeks, false);
+    public T fjern(int indeks){
+        indeksKontroll(indeks, false);
         Node<T> rNode = finnNode(indeks);
         if(indeks<0 || indeks==antall) {
             throw new IndexOutOfBoundsException();
