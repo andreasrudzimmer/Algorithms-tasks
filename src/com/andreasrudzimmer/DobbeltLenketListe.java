@@ -234,7 +234,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public boolean fjern(T verdi) {   int indeks = 0;
+    public boolean fjern(T verdi) {
+        int indeks = 0;
         Node<T> node = hode;
         Node<T> node2 = hale;
         while (node != null) {
