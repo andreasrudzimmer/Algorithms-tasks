@@ -4,9 +4,7 @@ package com.andreasrudzimmer;
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -364,7 +362,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+        DobbeltLenketListeIterator i = new DobbeltLenketListeIterator();
+        return i;
     }
 
     public Iterator<T> iterator(int indeks) {
@@ -394,7 +393,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next(){
-            throw new UnsupportedOperationException();
+            if(iteratorendringer!=endringer) {
+                throw new ConcurrentModificationException();
+            }else if(hasNext()!=true) {
+                throw new NoSuchElementException();
+            } else {
+                fjernOK = true;
+                Node<T> verdi = denne;
+                denne = denne.neste;
+                return verdi.verdi;
+            }
         }
 
         @Override
