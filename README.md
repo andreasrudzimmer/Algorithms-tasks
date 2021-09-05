@@ -1,5 +1,5 @@
-# Oblig2-AlgoritmerOgDatastrukturer
-Obligatorisk oppgave nr 2
+# Algorithms
+
 
 Andreas Rud Zimmer, S344051
 
