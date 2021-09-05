@@ -3,7 +3,7 @@
 
 Andreas Rud Zimmer, S344051
 
-oppgave 1: Lagde return-metode for antall ved bruk av instansvariabelen antall, og brukte samme instansvariabel til å lage  tom-metoden. Lgde så DobbeltLenketListe(T[] a) metoden. Denne sjekker først om tabellen = null, så går det en for-løkke gjennom tabellen og sjekker etter null-verdier, disse vil ikke bli lagt til i den dobbelt lenkede listen, samt plassere verdiene fra hode til hale. 
+oppgave 1: Lagde return-metode for antall ved bruk av instansvariabelen antall, og brukte samme instansvariabel til å lage  tom-metoden. Lagde så DobbeltLenketListe(T[] a) metoden. Denne sjekker først om tabellen = null, så går det en for-løkke gjennom tabellen og sjekker etter null-verdier, disse vil ikke bli lagt til i den dobbelt lenkede listen, samt plassere verdiene fra hode til hale. 
 
 oppgave 2: Brukte Stringbuilder her. Begynner med å sette en start-firkantet parantes i Stringen. Deretter sjekkes om listen er tom. Dersom den er det hopper metoden til siste steg og setter slutt-firkantet parantes. Dersom den ikke er tom benyttes en while-loop til å sette inn verdiene i listen til Stringbuilderen. omvendtString() ble lagd på lik måte, bare her fylles Stringen fra hale til hode. 
 
